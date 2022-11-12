@@ -1,11 +1,12 @@
 // CalculatePI.cpp : 定义控制台应用程序的入口点。
 //
 
-
+// #include "stdafx.h"
 #include "mpi.h"
 #include "math.h"
 #include "stdio.h"
 #include "stdlib.h"
+#include <tchar.h>
 
 
 long calExpo(long x, long n, long p)
