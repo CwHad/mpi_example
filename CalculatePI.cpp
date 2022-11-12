@@ -108,7 +108,7 @@ int main(int argc, char* argv[])
 		for (int i = 1; i < world_size; i++)
 		{
 			fprintf(stdout, "seed[%d]=%ld\n", i, basicSeed+i);
-			MPI_Send(basicSeed+i, sizeof(long), MPI_LONG, i, 0, MPI_COMM_WORLD);
+			MPI_Send(basicSeed+i, 1, MPI_LONG, i, 0, MPI_COMM_WORLD);
 		}
 
 		// Master calculates its own partial pi
@@ -118,7 +118,7 @@ int main(int argc, char* argv[])
 		// Receive nodes from all nodes 
 		for (int i = 1; i < world_size; i++)
 		{
-			MPI_Recv(&ret1, sizeof(double), MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &Stat);
+			MPI_Recv(&ret1, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &Stat);
 			result += ret1;
 			fprintf(stdout, "node=%ld: result=%.4f: ret1=%.4f\n", i, result, ret1);
 
@@ -132,11 +132,11 @@ int main(int argc, char* argv[])
 		for (int i = rank; i < world_size;i++)
 		{
 			long slaveseed;
-			MPI_Recv(&slaveseed, sizeof(long), MPI_LONG, 0, 0, MPI_COMM_WORLD, &Stat);
+			MPI_Recv(&slaveseed, 1, MPI_LONG, 0, 0, MPI_COMM_WORLD, &Stat);
 			ret1 = ret1 + generateRandomNumWithLeapFrog1(slaveseed, rank, 100, world_size);
 
 		}
-		MPI_Send(&ret1, sizeof(double), MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+		MPI_Send(&ret1, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
 	}
 
 	MPI_Finalize();
