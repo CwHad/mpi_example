@@ -1,0 +1,18 @@
+#!/bin/bash
+#PBS -q pp	
+#PBS -N the name you want to show in the queue 
+#PBS -l walltime=1:00:00
+#PBS -l nodes=1:ppn=4
+#PBS -t 1-50
+#PBS -o job.log
+#PBS -e error.log
+##remove the follow lines and put your own commands.
+#echo > ./out
+#while true
+#do
+#	date > ./out
+#	echo "hello world.." >> ./out
+#	sleep 5
+#done
+echo "Hello" > ./out
+###remove the lines above and replace with your own commands.
