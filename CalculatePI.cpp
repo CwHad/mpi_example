@@ -6,7 +6,7 @@
 #include "math.h"
 #include "stdio.h"
 #include "stdlib.h"
-#include <tchar.h>
+#include "tchar.h"
 
 
 long calExpo(long x, long n, long p)
